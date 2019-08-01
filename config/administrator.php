@@ -64,6 +64,11 @@ return array(
             'roles',
             'permissions',
         ],
+        '内容管理' => [
+            'categories',
+            'topics',
+            'replies',
+        ],
     ],
     /*
      * The permission option is the highest-level authentication check that lets you define a closure that should return true if the current user
