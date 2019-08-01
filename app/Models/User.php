@@ -6,7 +6,6 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
-use Auth;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -43,10 +42,13 @@ class User extends Authenticatable implements MustVerifyEmailContract
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * @param $instance
+     */
     public function notify($instance)
     {
         // 如果要通知的人是当前用户，就不必通知了！
-        if ($this->id == \Auth::id()) {
+        if ($this->id == \Illuminate\Support\Facades\Auth::id()) {
             return;
         }
 
