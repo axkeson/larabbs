@@ -69,6 +69,9 @@ return array(
             'topics',
             'replies',
         ],
+        '站点管理' => [
+            'settings.site',
+        ],
     ],
     /*
      * The permission option is the highest-level authentication check that lets you define a closure that should return true if the current user
