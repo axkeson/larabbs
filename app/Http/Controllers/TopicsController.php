@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Handlers\ImageUploadHandler;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Http\Requests\TopicRequest;
@@ -19,14 +20,17 @@ class TopicsController extends Controller
     /**
      * @param Request $request
      * @param Topic   $topic
+     * @param User    $user
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(Request $request, Topic $topic)
+    public function index(Request $request, Topic $topic, User $user)
     {
         $topics = $topic->withOrder($request->order)->paginate(20);
 
-        return view('topics.index', compact('topics'));
+        $active_users = $user->getActiveUsers();
+
+        return view('topics.index', compact('topics', 'active_users'));
     }
 
     /**
