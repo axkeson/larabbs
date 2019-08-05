@@ -21,4 +21,7 @@ $api->version('v1', [
 ], function (\Dingo\Api\Routing\Router $api) {
     // 短信验证码
     $api->post('verificationCodes', 'VerificationCodesController@store')->name('api.verificationCodes.store');
+    
+    // 用户注册
+    $api->post('users', 'UsersController@store')->name('api.users.store');
 });
