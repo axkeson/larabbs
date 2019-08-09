@@ -25,6 +25,7 @@ $api->version('v1', [
         'limit' => config('api.rate_limits.sign.limit'),
         'expires' => config('api.rate_limits.sign.expires'),
     ], function (\Dingo\Api\Routing\Router $api) {
+
         // 短信验证码
         $api->post('verificationCodes', 'VerificationCodesController@store')->name('api.verificationCodes.store');
 
@@ -45,6 +46,9 @@ $api->version('v1', [
 
         // 删除token
         $api->delete('authorizations/current', 'AuthorizationsController@destroy')->name('api.authorizations.destroy');
+
+        // 游客可以访问的接口
+        $api->get('categories', 'CategoriesController@index')->name('api.categories.index');
 
         // 需要 token 验证的接口
         $api->group(['middleware' => 'api.auth'], function (\Dingo\Api\Routing\Router $api) {
