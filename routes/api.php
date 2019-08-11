@@ -55,6 +55,10 @@ $api->version('v1', [
         // 删除token
         $api->delete('authorizations/current', 'AuthorizationsController@destroy')->name('api.authorizations.destroy');
 
+        // 用户详情
+        $api->get('users/{user}', 'UsersController@show')
+            ->name('api.users.show');
+
         // 游客可以访问的接口
         $api->get('categories', 'CategoriesController@index')->name('api.categories.index');
 
@@ -110,7 +114,8 @@ $api->version('v1', [
             // 标记消息通知为已读
             $api->patch('user/read/notifications', 'NotificationsController@read')
                 ->name('api.user.notifications.read');
-
+            $api->put('user/read/notifications', 'NotificationsController@read')
+                ->name('api.user.notifications.read.put');
             // 当前登录用户权限
             $api->get('user/permissions', 'PermissionsController@index')
                 ->name('api.user.permissions.index');
